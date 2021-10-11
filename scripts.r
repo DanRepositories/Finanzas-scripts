@@ -1,4 +1,4 @@
-payback <- function(inversion_inicial, tasa_descuento, FNF)
+payback <- function(inversion_inicial, tasa_descuento, FNF, verbose=FALSE)
 {
   periodos_totales = length(FNF)
 
@@ -9,6 +9,10 @@ payback <- function(inversion_inicial, tasa_descuento, FNF)
       cat("PAYBACK: ", i, "\n")
       cat("VAN ACUMULADO: ", van_actual, "\n")
       break
+    }
+
+    if (verbose) {
+      cat("VAN al ", i," periodo: ", van_actual, "\n")
     }
   }
 

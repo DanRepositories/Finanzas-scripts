@@ -62,3 +62,29 @@ mostrar_info_van <- function(van)
   }
 }
 
+beneficio_costo <- function(inversion_inicial, beneficios, costos, tasa, verbose=TRUE)
+{
+  periodos_totales = length(beneficios)
+  beneficios_vactual = 0
+  costos_va = 0
+
+  for (i in 1:periodos_totales) {
+    beneficios_vactual = beneficios_vactual + calcular_valor_actual(beneficios[i], tasa, i)
+    costos_va = costos_va + calcular_valor_actual(costos[i], tasa, i)
+  }
+
+  if (verbose) {
+    cat("SUMA BENEFICIOS VALOR ACTUAL: ", beneficios_vactual, "\n")
+    cat("SUMA COSTOS VALOR ACTUAL: ", costos_va, "\n")
+  }
+
+  razon_beneficio_costo = beneficios_vactual / (costos_va + inversion_inicial)
+  return(razon_beneficio_costo)
+}
+
+calcular_valor_actual <- function(monto, tasa, cantidad_periodos)
+{
+  valor_actual = monto * ((1 + tasa) ^ cantidad_periodos)
+  return(valor_actual)
+}
+

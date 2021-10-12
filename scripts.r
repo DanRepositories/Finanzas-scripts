@@ -1,3 +1,14 @@
+caue <- function(inversion_inicial, tasa_descuento, FNF)
+{
+  cant_periodos = length(FNF)
+  van = van_constante(inversion_inicial, tasa_descuento, FNF, FALSE)
+
+  denominador = 1 - ((1 + tasa_descuento) ^ (-cant_periodos))
+  valor_caue = van * tasa_descuento / (denominador)
+
+  return(valor_caue)
+}
+
 payback <- function(inversion_inicial, tasa_descuento, FNF, verbose=FALSE)
 {
   periodos_totales = length(FNF)

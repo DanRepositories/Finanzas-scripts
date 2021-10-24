@@ -9,6 +9,25 @@ caue <- function(inversion_inicial, tasa_descuento, FNF)
   return(valor_caue)
 }
 
+payback_variable <- function(inversion_inicial, tasas_descuento, FNF, verbose=FALSE)
+{
+  periodos_totales = length(FNF)
+
+  for (i in 1:periodos_totales) {
+    van_actual = van_variable(inversion_inicial, tasas_descuento[1:i], FNF[1:i], FALSE)
+
+    if (van_actual >=0) {
+      cat("PAYBACK: ", i, "\n")
+      cat("VAN ACUMULADO: ", van_actual, "\n")
+      break
+    }
+
+    if (verbose) {
+      cat("VAN al ", i," periodo: ", van_actual, "\n")
+    }
+  }
+}
+
 payback <- function(inversion_inicial, tasa_descuento, FNF, verbose=FALSE)
 {
   periodos_totales = length(FNF)
